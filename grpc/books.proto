@@ -3,10 +3,11 @@ syntax = "proto3";
 package books;
 
 service BookService{
-    rpc List(Empty) return (BookList){}
-    rpc Insert(Book) return (Empty){}
-    rpc Get(BoookIdRequest) return (Book) {}
-    rpc Delete(BoookIdRequest) return (Empty) {}
+    rpc List(Empty) returns (BookList){}
+    rpc Insert(Book) returns (Empty){}
+    rpc Get(BoookIdRequest) returns (Book) {}
+    rpc Delete(BoookIdRequest) returns (Empty) {}
+    rpc Watch(Empty) returns (stream Book){}
 }
 
 message Empty{}

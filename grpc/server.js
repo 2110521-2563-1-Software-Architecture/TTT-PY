@@ -1,12 +1,15 @@
 var grpc = require('grpc');
+var event = require('events')
 
 var booksProto = grpc.load('books.proto');
+var bookStream = new EventSource.EventEmitter();
 
 var books = [{
     id: 1,
     title: 'gRpC 101',
     author: 'Not me'
 }]
+
 
 var server = new grpc.Server();
 
@@ -42,6 +45,12 @@ server.addService(bookProto.books.BookService.service,{
             code: grpc.status.NOT_FOUND,
             details: 'Not found'
         });
+    },
+
+    watch: function(stream){
+        bookStream.on('new_book',function(book){
+            stream.write(book);
+        })
     }
 });
 
