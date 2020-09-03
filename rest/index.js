@@ -40,9 +40,9 @@ app.post("/api/addbook", function (req, res, next) {
 app.delete("/api/deletebook", function (req, res, next) {
   const { id } = req.body;
 
-  Library.deleteBookByID(id);
+  Library.deleteBookByID(parseInt(id));
   res.status(200);
-  res.send("success");
+  res.send({ status: "success" });
 });
 
 // Middleware will be trigger in order
