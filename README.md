@@ -197,7 +197,7 @@ switch (todo) {
 # Compare how to call the methods based on gRPC and REST API side-by-side, e.g. in a Table format as shown below.
 
 | Functions  | gRPC  | REST API |
-| --------  | -------- | -------- |
+| :--------:  | :--------: | :--------: |
 | List books | `client.List(ctx, &pb.Empty{})` | `request.get("http://localhost:50050/api/books/allbook", function (error, response, body) { ... });`|
 | Insert book | `client.Insert(ctx, book)` | `request.post({headers: { "content-type": "application/json" }, url: "http://localhost:50050/api/addbook", body: JSON.stringify({ title, author })}, function (error, response, body) { ... });` |
 | Delete book | `client.Delete(ctx, &pb.BookIdRequest{int32(id)})` | `request.delete("http://localhost:50050/deletebook/${parseInt(id)}", function (error, response, body) { ... });` |
@@ -212,7 +212,7 @@ switch (todo) {
  * gRPC สร้างใช้งานกับ Web ที่มีการติดตั้ง gRPC เท่านั้น ไม่สามารถเรียกผ่าน Web browser ต่างจาก REST API ที่สามารถเข้าจาก Web browser ได้
 
 | Feature | gRPC | REST API |
-| -------- | -------- | -------- |
+| :--------: | :--------: | :--------: |
 |  Protocol  |  HTTP/2 (fast) | HTTP/1.1 (slow)|
 |  Payload     |    Protobuf (binary, small)     | JSON (text, large) |
 |  API contract   |   Strict, required (.proto)  |   Loose, optional (OpenAPI)|
@@ -229,7 +229,7 @@ switch (todo) {
 
 
 | Functions | gRPC | REST API |
-| -------- | -------- | -------- |
+| :--------: | :--------: | :--------: |
 | List books     | `go run client.go list` | `node client.js list`     |
 | Insert book     | `go run client.go insert <id> <title> <author>` | `node client.js insert <id> <title> <author>`    |
 | Delete book     | `go run client.go delete <id>`    | `node client.js delete <id>`     |
