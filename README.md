@@ -7,7 +7,7 @@
 4. Yanika Dontong 6031010021
 5. Natthanon Manop 6031013021
 
-# Screenshots of Swagger for your APIs
+# Screenshots of Swagger for APIs
 ![](https://i.imgur.com/3yPHIS9.png)
 
 
