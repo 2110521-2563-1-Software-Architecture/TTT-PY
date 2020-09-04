@@ -111,6 +111,7 @@ func doGet(ctx context.Context, args ...string) {
 	}
 	conn, client := GetClient()
 	defer conn.Close()
+	//error start here
 	r, err := client.Get(ctx, &pb.BookIdRequest{int32(id)})
 	if err != nil {
 		log.Fatalf("Get book (%v): %v", id, err)
