@@ -47,7 +47,6 @@ function deleteBookByID(id) {
     }
   );
 }
-// addBookdeleteBookByID
 
 process.argv.shift(); // skip node.exe
 process.argv.shift(); // skip name of js file
@@ -55,13 +54,13 @@ process.argv.shift(); // skip name of js file
 var todo = process.argv.shift();
 
 switch (todo) {
-  case "all":
+  case "list":
     getAllBook();
     break;
-  case "info":
+  case "get":
     getBookByID(process.argv[0]);
     break;
-  case "add":
+  case "insert":
     addBook(process.argv[0], process.argv[1]);
     break;
   case "delete":
