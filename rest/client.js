@@ -33,21 +33,17 @@ function addBook(title, author) {
   );
 }
 function deleteBookByID(id) {
-  request.delete(
-    {
-      headers: { "content-type": "application/json" },
-      url: commomPath + "/deletebook",
-      body: JSON.stringify({ id }),
-    },
-    function (error, response, body) {
-      if (error) {
-        return console.log(error);
-      }
-      console.log(JSON.parse(body));
+  request.delete(commomPath + `/deletebook/${parseInt(id)}`, function (
+    error,
+    response,
+    body
+  ) {
+    if (error) {
+      return console.log(error);
     }
-  );
+    console.log(JSON.parse(body));
+  });
 }
-// addBookdeleteBookByID
 
 process.argv.shift(); // skip node.exe
 process.argv.shift(); // skip name of js file
@@ -55,13 +51,13 @@ process.argv.shift(); // skip name of js file
 var todo = process.argv.shift();
 
 switch (todo) {
-  case "all":
+  case "list":
     getAllBook();
     break;
-  case "info":
+  case "get":
     getBookByID(process.argv[0]);
     break;
-  case "add":
+  case "insert":
     addBook(process.argv[0], process.argv[1]);
     break;
   case "delete":
