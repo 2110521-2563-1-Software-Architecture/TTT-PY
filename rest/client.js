@@ -21,12 +21,12 @@ function getBookByID(id) {
     console.log(JSON.parse(body));
   });
 }
-function addBook(title, author) {
+function addBook(id, title, author) {
   request.post(
     {
       headers: { "content-type": "application/json" },
       url: commomPath + "/addbook",
-      body: JSON.stringify({ title, author }),
+      body: JSON.stringify({ id, title, author }),
     },
     function (error, response, body) {
       if (error) {
@@ -62,7 +62,7 @@ switch (todo) {
     getBookByID(process.argv[0]);
     break;
   case "insert":
-    addBook(process.argv[0], process.argv[1]);
+    addBook(process.argv[0], process.argv[1], process.argv[2]);
     break;
   case "delete":
     deleteBookByID(process.argv[0]);

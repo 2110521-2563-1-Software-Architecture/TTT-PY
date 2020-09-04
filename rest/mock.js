@@ -10,7 +10,6 @@ class Library {
   constructor() {
     var b = new Book(123, "A Tale of Two Cities", "Charles Dickens");
     this._books = [b];
-    this._reservedBookId = 0;
   }
 
   getBookByID(id) {
@@ -23,10 +22,9 @@ class Library {
     return this._books;
   }
 
-  addBook(title, author) {
-    var book = new Book(this._reservedBookId, title, author);
+  addBook(id, title, author) {
+    var book = new Book(parseInt(id), title, author);
     this._books.push(book);
-    this.increaseReservedBookId();
     return book;
   }
 
@@ -35,10 +33,6 @@ class Library {
       return obj._id !== parseInt(id);
     });
     return;
-  }
-
-  increaseReservedBookId() {
-    this._reservedBookId = this._reservedBookId + 1;
   }
 }
 

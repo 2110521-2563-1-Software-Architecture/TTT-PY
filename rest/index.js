@@ -30,9 +30,9 @@ app.get("/api/books/:id", function (req, res, next) {
 });
 
 app.post("/api/addbook", function (req, res, next) {
-  const { title, author } = req.body;
+  const { id, title, author } = req.body;
 
-  const addedBook = Library.addBook(title, author);
+  const addedBook = Library.addBook(id, title, author);
   res.status(201);
   res.send(addedBook);
 });
