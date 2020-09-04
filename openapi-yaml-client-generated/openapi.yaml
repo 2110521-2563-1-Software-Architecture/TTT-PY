@@ -1,18 +1,11 @@
 openapi: 3.0.0
-# "schemes": ["http"]
 servers:
-  # Added by API Auto Mocking Plugin
   - description: SwaggerHub API Auto Mocking
     url: http://localhost:50050
 info:
   description: This is a simple API
   version: "1.0.0"
-  title: Library
-  contact:
-    email: you@your-company.com
-  license:
-    name: Apache 2.0
-    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+  title: Book Service
 tags:
   - name: owner
     description: Secured Owner-only calls
@@ -83,7 +76,18 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/NewBook"
+              type: object
+              required:
+                - title
+                - author
+              properties:
+                title:
+                  type: string
+                  example: "A Tale of Two Cities"
+                author:
+                  type: string
+                  example: "Charles Dickens"
+
   /api/deletebook/{id}:
     delete:
       tags:
@@ -122,18 +126,6 @@ components:
         id:
           type: integer
           example: 123
-        title:
-          type: string
-          example: "A Tale of Two Cities"
-        author:
-          type: string
-          example: "Charles Dickens"
-    NewBook:
-      type: object
-      required:
-        - title
-        - author
-      properties:
         title:
           type: string
           example: "A Tale of Two Cities"

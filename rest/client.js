@@ -10,7 +10,11 @@ function getAllBook() {
   });
 }
 function getBookByID(id) {
-  request.get(commomPath + `/books/${id}`, function (error, response, body) {
+  request.get(commomPath + `/books/${parseInt(id)}`, function (
+    error,
+    response,
+    body
+  ) {
     if (error) {
       return console.log(error);
     }
