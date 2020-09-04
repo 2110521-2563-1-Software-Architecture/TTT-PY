@@ -1,109 +1,111 @@
 openapi: 3.0.0
+"schemes": ["http"]
+servers:
+# Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: http://localhost:50050
 info:
-  title: Library
   description: This is a simple API
+  version: "1.0.0"
+  title: Library
   contact:
     email: you@your-company.com
   license:
     name: Apache 2.0
-    url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: 1.0.0
-servers:
-- url: https://virtserver.swaggerhub.com/natcha0012/softarch/1.0.0
-  description: SwaggerHub API Auto Mocking
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
 tags:
-- name: owner
-  description: Secured Owner-only calls
-- name: customers
-  description: Operations available to everyone
+  - name: owner
+    description: Secured Owner-only calls
+  - name: customers
+    description: Operations available to everyone
 paths:
   /api/books/allbook:
     get:
       tags:
-      - customers
+        - customers
       summary: searches all books
+      operationId: searchAllBooks
       description: |
         By passing in the appropriate options, you can search for
         available books in the Library
-      operationId: searchAllBooks
       responses:
-        "200":
+        '200':
           description: search results matching criteria
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Books'
-        "400":
+        '400':
           description: bad input parameter
-  /api/books/:id:
+        '403':
+          description: forbidden
+            
+  /api/books/{id}:
     get:
       tags:
-      - customers
+        - customers
       summary: searches a book by id
+      operationId: getBookId
       description: |
         By passing in the appropriate options, you can search for
         available books in the Library
-      operationId: getBookId
       parameters:
-      - name: id
-        in: query
-        description: pass an search id for looking up books
-        required: true
-        style: form
-        explode: true
-        schema:
-          type: integer
+        - in: path
+          name: id
+          description: pass an search id for looking up books
+          required: true
+          schema:
+            type: integer
       responses:
-        "200":
+        '200':
           description: search results matching criteria
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Book'
-        "400":
+        '400':
           description: bad input parameter
   /api/addbook:
     post:
       tags:
-      - owner
+        - owner
       summary: insert a new book
-      description: Adds a new book to the Library
       operationId: addBook
+      description: Adds a new book to the Library
+      responses:
+        '201':
+          description: item created
+        '400':
+          description: 'invalid input, object invalid'
+        '409':
+          description: an existing item already exists
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/Book'
-      responses:
-        "201":
-          description: item created
-        "400":
-          description: invalid input, object invalid
-        "409":
-          description: an existing item already exists
   /api/deletebook:
     delete:
       tags:
-      - owner
+        - owner
       summary: remove a book by id
-      description: delete a book by id
       operationId: deleteBook
+      description: delete a book by id
       parameters:
-      - name: id
-        in: query
-        description: pass an search id for looking up books
-        required: true
-        style: form
-        explode: true
-        schema:
-          type: integer
+        - in: query
+          name: id
+          description: pass an search id for looking up books
+          required: true
+          schema:
+            type: integer
       responses:
-        "201":
+        '201':
           description: item deleted
-        "400":
-          description: invalid input, object invalid
-        "409":
+        '400':
+          description: 'invalid input, object invalid'
+        '409':
           description: an existing item already exists
+      
 components:
   schemas:
     Books:
@@ -111,18 +113,18 @@ components:
       items:
         $ref: '#/components/schemas/Book'
     Book:
-      required:
-      - author
-      - id
-      - title
       type: object
+      required:
+        - id
+        - title
+        - author
       properties:
         id:
           type: integer
           example: 123
         title:
           type: string
-          example: A Tale of Two Cities
+          example: 'A Tale of Two Cities'
         author:
           type: string
-          example: Charles Dickens
+          example: 'Charles Dickens'
