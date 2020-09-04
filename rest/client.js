@@ -33,19 +33,16 @@ function addBook(title, author) {
   );
 }
 function deleteBookByID(id) {
-  request.delete(
-    {
-      headers: { "content-type": "application/json" },
-      url: commomPath + "/deletebook",
-      body: JSON.stringify({ id }),
-    },
-    function (error, response, body) {
-      if (error) {
-        return console.log(error);
-      }
-      console.log(JSON.parse(body));
+  request.delete(commomPath + `/deletebook/${parseInt(id)}`, function (
+    error,
+    response,
+    body
+  ) {
+    if (error) {
+      return console.log(error);
     }
-  );
+    console.log(JSON.parse(body));
+  });
 }
 
 process.argv.shift(); // skip node.exe
