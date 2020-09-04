@@ -76,18 +76,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              required:
-                - title
-                - author
-              properties:
-                title:
-                  type: string
-                  example: "A Tale of Two Cities"
-                author:
-                  type: string
-                  example: "Charles Dickens"
-
+              $ref: "#/components/schemas/Book"
   /api/deletebook/{id}:
     delete:
       tags:
