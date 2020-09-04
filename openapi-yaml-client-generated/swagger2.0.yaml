@@ -1,16 +1,22 @@
 swagger: "2.0"
+
 info:
   version: "1.0.0"
   title: "Swagger Book"
+
 host: "localhost:50050"
+
 tags:
 - name: "owner"
   description: Secured Owner-only calls
 - name: customers
   description: Operations available to everyone
+
 schemes:
-  - http
+- http
+
 paths:
+
   /api/books/allbook:
     get:
       tags:
@@ -53,6 +59,7 @@ paths:
             $ref: "#/components/schemas/Book"
         "400":
           description: "bad input parameter"
+
   /api/addbook:
     post:
       tags:
@@ -77,6 +84,7 @@ paths:
           description: "invalid input, object invalid"
         "409":
           description: "an existing item already exists"
+
   /api/deletebook/{id}:
     delete:
       tags:
@@ -99,17 +107,20 @@ paths:
           description: "an existing item already exists"
 
 components:
+
   schemas:
     Books:
       type: array
       items:
         $ref: "#/components/schemas/Book"
+
     Book:
       type: object
       required:
         - id
         - title
         - author
+
       properties:
         id:
           type: integer
@@ -120,11 +131,12 @@ components:
         author:
           type: string
           example: "Charles Dickens"
+          
     NewBook:
       type: object
       required:
-        - title
-        - author
+      - title
+      - author
       properties:
         title:
           type: string
