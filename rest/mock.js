@@ -32,7 +32,7 @@ class Library {
 
   deleteBookByID(id) {
     this._books = this._books.filter(function (obj) {
-      return obj._id !== id;
+      return obj._id !== parseInt(id);
     });
     return;
   }

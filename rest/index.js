@@ -1,6 +1,6 @@
 var express = require("express");
 var Library = require("./mock.js");
-
+var cors = require("cors");
 const PORT = 50050;
 
 var app = express();
@@ -8,7 +8,7 @@ var app = express();
 // Middleware for parsing
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: false })); // for parsing application/x-www-form-urlencoded
-
+app.use(cors());
 // custom error handler
 function error(status, msg) {
   var err = new Error(msg);
@@ -37,10 +37,9 @@ app.post("/api/addbook", function (req, res, next) {
   res.send(addedBook);
 });
 
-app.delete("/api/deletebook", function (req, res, next) {
-  const { id } = req.body;
-
-  Library.deleteBookByID(id);
+app.delete("/api/deletebook/:id", function (req, res, next) {
+  const bookId = req.params.id;
+  Library.deleteBookByID(bookId);
   res.status(200);
   res.send("success");
 });
