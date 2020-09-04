@@ -230,11 +230,11 @@ switch (todo) {
 
 | Functions | gRPC | REST API |
 | -------- | -------- | -------- |
-| List books     | go run client.go list | node client.js list     |
-| Insert book     | go run client.go insert <id> <title> <author> | node client.js insert <id> <title> <author>    |
-| Delete book     | go run client.go delete <id>    | node client.js delete <id>     |
-| Get book     | go run client.go get <id>   | node client.js get <id>     |
-| Watch     | go run client.go watch  | -     |
+| List books     | `go run client.go list` | `node client.js list`     |
+| Insert book     | `go run client.go insert <id> <title> <author>` | `node client.js insert <id> <title> <author>`    |
+| Delete book     | `go run client.go delete <id>`    | `node client.js delete <id>`     |
+| Get book     | `go run client.go get <id>`   | `node client.js get <id>`     |
+| Watch     | `go run client.go watch`  | -     |
 
 
 # Draw a component diagram representing the book services with and without interfaces.
